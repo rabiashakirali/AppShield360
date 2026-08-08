@@ -1,0 +1,221 @@
+{
+  "scan_info": {
+    "target": "https://kravemart.com",
+    "timestamp": "2026-08-08T15:38:36.382612",
+    "scanner": "AppShield 360 v3.0",
+    "mode": "full",
+    "duration_seconds": 310.94
+  },
+  "findings": {
+    "technology": {
+      "server": "Apache/2.4.52 (Ubuntu)",
+      "technologies": [
+        "WordPress",
+        "jQuery",
+        "Google Analytics"
+      ],
+      "waf": null,
+      "endpoints": [
+        "/robots.txt (200)"
+      ]
+    },
+    "ports": [
+      {
+        "port": 80,
+        "service": "HTTP",
+        "banner": ""
+      },
+      {
+        "port": 443,
+        "service": "HTTPS",
+        "banner": ""
+      }
+    ],
+    "subdomains": [
+      {
+        "subdomain": "admin.kravemart.com",
+        "type": "A"
+      },
+      {
+        "subdomain": "api.kravemart.com",
+        "type": "A"
+      },
+      {
+        "subdomain": "careers.kravemart.com",
+        "type": "A"
+      },
+      {
+        "subdomain": "media.kravemart.com",
+        "type": "A"
+      },
+      {
+        "subdomain": "support.kravemart.com",
+        "type": "A"
+      },
+      {
+        "subdomain": "www.kravemart.com",
+        "type": "A"
+      }
+    ],
+    "directories": [
+      {
+        "path": "/.htaccess",
+        "status": 403,
+        "size": 279
+      },
+      {
+        "path": "/.htpasswd",
+        "status": 403,
+        "size": 279
+      },
+      {
+        "path": "/robots.txt",
+        "status": 200,
+        "size": 170
+      },
+      {
+        "path": "/server-status",
+        "status": 403,
+        "size": 279
+      },
+      {
+        "path": "/wp-login.php",
+        "status": 200,
+        "size": 6222
+      }
+    ],
+    "endpoints_count": 100,
+    "vulnerabilities": [
+      {
+        "type": "SQL Injection",
+        "url": "https://kravemart.com?id=1&search=test&redirect=&next=",
+        "param": "query",
+        "method": "GET",
+        "payload": "'",
+        "evidence": "SQL error detected with payload: '",
+        "fix": "Use parameterized queries/prepared statements. Validate and sanitize all user inputs.",
+        "cwe": "CWE-89",
+        "severity": "CRITICAL",
+        "cvss": 9.8
+      },
+      {
+        "type": "IDOR",
+        "url": "https://kravemart.com?id=1&search=test&redirect=&next=",
+        "param": "id",
+        "method": "GET",
+        "payload": "Changed ID to 2",
+        "evidence": "Different ID (2) returns valid content (224650 bytes)",
+        "fix": "Implement proper access control checks. Use indirect object references.",
+        "cwe": "CWE-639",
+        "severity": "MEDIUM",
+        "cvss": 5.3
+      },
+      {
+        "type": "SQL Injection",
+        "url": "https://kravemart.com/blog/",
+        "param": "id",
+        "method": "GET",
+        "payload": "'",
+        "evidence": "SQL error detected with payload: '",
+        "fix": "Use parameterized queries/prepared statements. Validate and sanitize all user inputs.",
+        "cwe": "CWE-89",
+        "severity": "CRITICAL",
+        "cvss": 9.8
+      },
+      {
+        "type": "SQL Injection",
+        "url": "https://www.kravemart.com/?id=1&search=test&redirect=&next=",
+        "param": "query",
+        "method": "GET",
+        "payload": "'",
+        "evidence": "SQL error detected with payload: '",
+        "fix": "Use parameterized queries/prepared statements. Validate and sanitize all user inputs.",
+        "cwe": "CWE-89",
+        "severity": "CRITICAL",
+        "cvss": 9.8
+      },
+      {
+        "type": "IDOR",
+        "url": "https://www.kravemart.com/?id=1&search=test&redirect=&next=",
+        "param": "id",
+        "method": "GET",
+        "payload": "Changed ID to 2",
+        "evidence": "Different ID (2) returns valid content (225190 bytes)",
+        "fix": "Implement proper access control checks. Use indirect object references.",
+        "cwe": "CWE-639",
+        "severity": "MEDIUM",
+        "cvss": 5.3
+      },
+      {
+        "type": "SQL Injection",
+        "url": "https://www.kravemart.com/blog/",
+        "param": "id",
+        "method": "GET",
+        "payload": "'",
+        "evidence": "SQL error detected with payload: '",
+        "fix": "Use parameterized queries/prepared statements. Validate and sanitize all user inputs.",
+        "cwe": "CWE-89",
+        "severity": "CRITICAL",
+        "cvss": 9.8
+      }
+    ],
+    "auth_issues": [
+      {
+        "type": "Missing Security Header",
+        "severity": "MEDIUM",
+        "detail": "CSP header missing",
+        "fix": "Implement CSP headers",
+        "cwe": "CWE-693",
+        "cvss": 5.0
+      },
+      {
+        "type": "Exposed Login Endpoint",
+        "severity": "INFO",
+        "detail": "Login page at https://kravemart.com/wp-login.php",
+        "fix": "Ensure strong passwords and rate limiting",
+        "cwe": "N/A",
+        "cvss": 5.0
+      }
+    ],
+    "api_issues": [],
+    "cloud_issues": [],
+    "wp_issues": [
+      {
+        "type": "WordPress Issue",
+        "detail": "WordPress version: 6.9.6",
+        "severity": "MEDIUM",
+        "url": "https://kravemart.com",
+        "cwe": "CWE-200",
+        "cvss": 5.0,
+        "fix": "Review and sanitize input"
+      },
+      {
+        "type": "WordPress Issue",
+        "detail": "WordPress readme.html exposed",
+        "severity": "HIGH",
+        "url": "https://kravemart.com",
+        "cwe": "CWE-200",
+        "cvss": 5.0,
+        "fix": "Review and sanitize input"
+      },
+      {
+        "type": "WordPress Issue",
+        "detail": "WP User found: admin (admin)",
+        "severity": "MEDIUM",
+        "url": "https://kravemart.com",
+        "cwe": "CWE-200",
+        "cvss": 5.0,
+        "fix": "Review and sanitize input"
+      },
+      {
+        "type": "WordPress Issue",
+        "detail": "WP Plugin: contact-form-7 v6.1.6\r",
+        "severity": "MEDIUM",
+        "url": "https://kravemart.com",
+        "cwe": "CWE-200",
+        "cvss": 5.0,
+        "fix": "Review and sanitize input"
+      }
+    ]
+  }
+}
